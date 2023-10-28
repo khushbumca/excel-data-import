@@ -1,0 +1,83 @@
+<% unless @results.nil? %>
+  
+  <div class="center">
+    <h1> Excel Result </h1>
+    <div class="main-div">     
+
+      <table class="main">
+        <tr>
+          <td>Total (rows of all spreadsheets)</td>
+          <td><%=@results[:total_user]%></td>
+        </tr>
+        <tr>
+          <td>Passed rows</td>
+          <td><%=@results[:saved]%></td>
+        </tr>
+        <tr>
+          <td>Failed rows</td>
+          <td><%=@results[:failed]%></td>
+        </tr>
+      </table>
+
+      <table class="error">
+        <tr><td colspan="3" class="error_header"> Failed Records with reasons </td></tr>
+        <tr class="header">
+          <th>SpreadSheet Name</th>
+          <th>Row No</th>
+          <th>Reasons</th>
+        </tr>
+        <% @results[:errors].each do |error_row| %>
+          <tr class="error_row">
+            <td><%= error_row[:sheet] %></td>
+            <td><%= error_row[:rowno] %></td>
+            <td><%= error_row[:error] %></td>
+          </tr>
+        <% end %>  
+      </table>  
+    </div>
+  </div>  
+<% end %>  
+
+<style>
+
+  .main-div{
+    border: 2px solid #3F8686;
+  }
+
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  .main td{
+    font-size: 18px;
+    font-weight: bold;
+    color: #3F8686;
+    padding: 15px;
+  }
+
+  tr.error_row:nth-child(even) {
+    background-color: #dddddd;
+  }
+
+  tr.error_row:hover {background-color: #e2e9f2;}
+
+  .header {
+    background-color: #9daabd;
+  }
+
+  .error_header{
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #3F8686;
+    padding: 15px;
+  }
+  
+</style>

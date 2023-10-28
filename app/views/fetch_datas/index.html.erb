@@ -1,0 +1,12 @@
+<div class="center">
+  <% if flash[:error] %>
+    <div class="error-message">
+      <%= flash[:error] %>
+    </div>
+  <% end %>  
+  <h1>Upload Excel Sheet</h1>
+  <%= form_tag({ action: :upload_data }, multipart: true, data: { turbo: false }) do %>
+    <%= file_field_tag :file_data %>
+    <%= submit_tag 'Import Data' %>
+  <% end %>
+</div>
